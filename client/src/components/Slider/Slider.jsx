@@ -1,3 +1,4 @@
+import {useState} from "react";
 import {ArrowLeftOutlined, ArrowRightOutlined} from "@material-ui/icons";
 import {
 	Arrow, Button,
@@ -9,27 +10,39 @@ import {
 	Title,
 	Wrapper
 } from "../../styles/slider";
-import product from "../../assets/images/product.jpeg";
+import {sliderItems} from "../../boilerplateData";
 
 const Slider = () => {
+	const [slideIndex, setSlideIndex] = useState(0);
+
+	const handleClick = (direction) => {
+		if (direction === "left") {
+			setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+		} else {
+			setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+		}
+	};
+
 	return (
 		<Container>
-			<Arrow direction={"left"}>
+			<Arrow direction={"left"} onClick={() => handleClick("left")}>
 				<ArrowLeftOutlined/>
 			</Arrow>
-			<Wrapper>
-				<SlideContainer>
-					<ImageContainer>
-						<Image src={product}/>
-					</ImageContainer>
-					<InfoContainer>
-						<Title>SUMMER SALE</Title>
-						<Description>DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.</Description>
-						<Button>SHOP NOW</Button>
-					</InfoContainer>
-				</SlideContainer>
+			<Wrapper slideIndex={slideIndex}>
+				{sliderItems.map((item) => (
+					<SlideContainer bg={item.bg}>
+						<ImageContainer>
+							<Image src={item.img}/>
+						</ImageContainer>
+						<InfoContainer>
+							<Title>{item.title}</Title>
+							<Description>{item.desc}</Description>
+							<Button>SHOP NOW</Button>
+						</InfoContainer>
+					</SlideContainer>
+				))}
 			</Wrapper>
-			<Arrow direction={"right"}>
+			<Arrow direction={"right"} onClick={() => handleClick("right")}>
 				<ArrowRightOutlined/>
 			</Arrow>
 		</Container>

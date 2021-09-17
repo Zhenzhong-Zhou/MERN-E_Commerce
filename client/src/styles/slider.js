@@ -5,6 +5,7 @@ export const Container = styled.div `
   height: 100vh;
   display: flex;
   position: relative;
+  overflow: hidden;
 `;
 
 export const Arrow = styled.div `
@@ -23,10 +24,14 @@ export const Arrow = styled.div `
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
+  z-index: 2;
 `;
 
 export const Wrapper = styled.div `
   height: 100%;
+  display: flex;
+  transition: all 1.5s ease;
+  transform: translateX(${props => props.slideIndex * -100}vw);
 `;
 
 export const SlideContainer = styled.div `
@@ -34,6 +39,7 @@ export const SlideContainer = styled.div `
   height: 100vh;
   display: flex;
   align-items: center;
+  background-color: #${props => props.bg};
 `;
 
 export const ImageContainer = styled.div `
