@@ -1,8 +1,13 @@
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Home} from "./pages";
+
 const App = () => {
 	return (
-		<div>
-			App
-		</div>
+		<BrowserRouter>
+			<Switch>
+				<Route exact path={"/"} component={Home}/>
+			</Switch>
+		</BrowserRouter>
 	);
 };
 
