@@ -1,11 +1,12 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Home} from "./pages";
+import {Category, Home} from "./pages";
 
 const App = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
 				<Route exact path={"/"} component={Home}/>
+				<Route exact path={"/categories"} component={Category}/>
 			</Switch>
 		</BrowserRouter>
 	);
