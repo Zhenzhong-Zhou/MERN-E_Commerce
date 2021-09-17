@@ -1,6 +1,6 @@
 import {Container} from "../../../styles/category";
 
-const Category = () => {
+const Category = ({item}) => {
 	return (
 		<Container>
 			Category
