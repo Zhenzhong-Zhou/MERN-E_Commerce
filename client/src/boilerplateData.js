@@ -1,6 +1,7 @@
 import product from "./assets/images/product.jpeg";
 import product1 from "./assets/images/product1.png";
 import product2 from "./assets/images/product2.jpeg";
+import jacket from "./assets/images/Jacket.png";
 
 export const sliderItems = [
 	{
@@ -71,7 +72,7 @@ export const popularProducts = [
 	},
 	{
 		id:7,
-		img:"https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+		img: jacket,
 	},
 	{
 		id:8,
