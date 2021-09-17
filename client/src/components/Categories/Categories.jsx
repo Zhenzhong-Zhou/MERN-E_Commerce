@@ -6,7 +6,7 @@ const Categories = () => {
 	return (
 		<Container>
 			{categories.map((item) => (
-				<Category item={item}/>
+				<Category item={item} key={item.id}/>
 			))}
 		</Container>
 	);
