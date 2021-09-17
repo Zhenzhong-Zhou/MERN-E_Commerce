@@ -1,0 +1,15 @@
+{
+  "short_name": "E_Commerce App",
+  "name": "Create React MERN E_Commerce App Sample",
+  "icons": [
+    {
+      "src": "e_commerce.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
