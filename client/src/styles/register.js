@@ -6,6 +6,7 @@ export const Container = styled.div `
   height: 100vh;
   background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), 
   				url(${registerBg}) center;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
