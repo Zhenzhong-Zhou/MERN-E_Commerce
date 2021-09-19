@@ -9,7 +9,7 @@ import {
 	SlideContainer,
 	Title,
 	Wrapper
-} from "../../styles/slider";
+} from "../../styles/slider.js";
 import {sliderItems} from "../../boilerplateData";
 
 const Slider = () => {
