@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Cart, Category, Home, Login, Product, Register} from "./pages";
+import {Cart, Category, Home, Login, NotFound, Product, Register} from "./pages";
 
 const App = () => {
 	return (
@@ -11,6 +11,7 @@ const App = () => {
 				<Route exact path={"/categories"} component={Category}/>
 				<Route exact path={"/products"} component={Product}/>
 				<Route exact path={"/cart"} component={Cart}/>
+				<Route exact path={""} component={NotFound}/>
 			</Switch>
 		</BrowserRouter>
 	);
