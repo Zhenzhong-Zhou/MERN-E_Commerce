@@ -6,7 +6,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 
-import indexRoutes from "./routes/index.js"
+import indexRoutes from "./routes/index.js";
 
 // Initialization App
 const app = express();
