@@ -9,7 +9,7 @@ const Login = () => {
 					<Input placeholder={"Username"}/>
 					<Input placeholder={"Password"}/>
 					<Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-					<Link>CREATE A NEW ACCOUNT</Link>
+					<Link href={"/register"} className={"link"}>CREATE A NEW ACCOUNT</Link>
 					<Button>LOGIN</Button>
 				</Form>
 			</Wrapper>

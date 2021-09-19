@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import {Button, Container, Image, InfoContainer, Title} from "../../../styles/category";
 
 const Category = ({item}) => {
@@ -6,7 +7,9 @@ const Category = ({item}) => {
 			<Image src={item.img}/>
 			<InfoContainer>
 				<Title>{item.title}</Title>
-				<Button>SHOP NOW</Button>
+				<Link to={"/categories"} className={"link"}>
+					<Button>SHOP NOW</Button>
+				</Link>
 			</InfoContainer>
 		</Container>
 	);

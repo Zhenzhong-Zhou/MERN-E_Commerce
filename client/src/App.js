@@ -1,5 +1,6 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {Cart, Category, Home, Login, NotFound, Product, Register} from "./pages";
+import "./App.css";
 
 const App = () => {
 	return (

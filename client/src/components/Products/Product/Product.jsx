@@ -1,5 +1,6 @@
 import {FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Circle, Container, Icon, Image, InfoContainer} from "../../../styles/product";
+import {Link} from "react-router-dom";
 
 const Product = ({item}) => {
 	return (
@@ -8,10 +9,14 @@ const Product = ({item}) => {
 			<Image src={item.img}/>
 			<InfoContainer>
 				<Icon>
-					<ShoppingCartOutlined/>
+					<Link to={"/cart"} className={"link"}>
+						<ShoppingCartOutlined/>
+					</Link>
 				</Icon>
 				<Icon>
-					<SearchOutlined/>
+					<Link to={"/products"} className={"link"}>
+						<SearchOutlined/>
+					</Link>
 				</Icon>
 				<Icon>
 					<FavoriteBorderOutlined/>

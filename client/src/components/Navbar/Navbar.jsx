@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import {Search, ShoppingCartOutlined} from "@material-ui/icons";
 import {Badge} from "@material-ui/core";
 import {Center, Container, Input, Language, Left, Logo, MenuItem, Right, SearchContainer, Wrapper} from "../../styles/navbar.js";
@@ -15,14 +16,22 @@ const Navbar = () => {
 						<Search style={{color: "gray", fontSize: "16px"}}/>
 					</SearchContainer>
 				</Left>
-				<Center><Logo>E-Commerce</Logo></Center>
+				<Link to={"/"} className={"link"}>
+					<Center><Logo>E-Commerce</Logo></Center>
+				</Link>
 				<Right>
-					<MenuItem>REGISTER</MenuItem>
-					<MenuItem>SIGN IN</MenuItem>
+					<Link to={"/register"} className={"link"}>
+						<MenuItem>REGISTER</MenuItem>
+					</Link>
+					<Link to={"/login"} className={"link"}>
+						<MenuItem>SIGN IN</MenuItem>
+					</Link>
 					<MenuItem>
-						<Badge badgeContent={4} color={"primary"}>
-							<ShoppingCartOutlined/>
-						</Badge>
+						<Link to={"/cart"} className={"link"}>
+							<Badge badgeContent={4} color={"primary"}>
+								<ShoppingCartOutlined/>
+							</Badge>
+						</Link>
 					</MenuItem>
 				</Right>
 			</Wrapper>
