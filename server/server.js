@@ -7,6 +7,10 @@ import morgan from "morgan";
 import cors from "cors";
 
 import indexRoutes from "./routes/index.js";
+import userRoutes from "./routes/users.js";
+import productRoutes from "./routes/products.js";
+import cartRoutes from "./routes/carts.js";
+import orderRoutes from "./routes/orders.js";
 
 // Initialization App
 const app = express();
@@ -21,6 +25,10 @@ app.use(cors());
 
 // Routes
 app.use("/", indexRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/carts", cartRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Server listen and connect to MongoDB
 const PORT = process.env.PORT;
