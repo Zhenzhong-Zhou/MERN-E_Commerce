@@ -19,7 +19,8 @@
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.6",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "stripe": "^8.176.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
