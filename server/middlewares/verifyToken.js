@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
-import {token} from "morgan";
 
 export const verifyToken = (req, res ,next) => {
 	const authHeader = req.headers.token;
 	if (authHeader) {
+		const token = authHeader.split(" ")[1];
 		jwt.verify(token, process.env.SECRET_KEY_ACCESS_TOKEN, (error, user) => {
 			if (error) res.status(403).json("Invalid Token!");
 			req.user = user;
