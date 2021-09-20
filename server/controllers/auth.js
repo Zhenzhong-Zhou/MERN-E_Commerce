@@ -26,10 +26,10 @@ export const login = async (req, res) => {
 		original !== req.body.password && res.status(401).json("Incorrect email or password. Please try again.");
 		const accessToken = jwt.sign({
 			id: user._id, isTester: user.isTester, isAdmin: user.isAdmin
-		}, process.env.SECRET_KEY_ACCESS_TOKEN, {expiresIn: "1m"});
+		}, process.env.SECRET_KEY_ACCESS_TOKEN, {expiresIn: process.env.ACCESS_TOKEN_TIME});
 		const refreshToken = jwt.sign({
 			id: user._id, isTester: user.isTester, isAdmin: user.isAdmin
-		}, process.env.SECRET_KEY_REFRESH_TOKEN, {expiresIn: "7d"});
+		}, process.env.SECRET_KEY_REFRESH_TOKEN, {expiresIn: process.env.REFRESH_TOKEN_TIME});
 		const {password, ...info} = user._doc;
 		res.status(200).json({...info, accessToken, refreshToken});
 	} catch (error) {
