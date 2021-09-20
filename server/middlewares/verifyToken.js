@@ -13,3 +13,5 @@ const verifyToken = (req, res ,next) => {
 		return res.status(401).json("Invalid Authenticated!");
 	}
 };
+
+export default verifyToken;
