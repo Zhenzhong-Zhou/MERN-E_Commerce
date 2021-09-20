@@ -50,11 +50,11 @@ export const fetch_all_orders = async (req, res) => {
 export const fetch_monthly_income = async (req, res) => {
 	const date = new Date();
 	const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
-	const prevMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
+	const prevMonth = new Date(date.setMonth(lastMonth.getMonth() - 1));
 	try {
 		const income = await Order.aggregate([
 			{$match: {createdAt: {$gte: prevMonth}}},
-			{$project: {month: {$month: "createdAt"}, sales: "$amount"}},
+			{$project: {month: {$month: "$createdAt"}, sales: "$amount"}},
 			{$group: {_id: "$month", total: {$sum: "$sales"}}}
 		]);
 		res.status(200).json(income);
