@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import {token} from "morgan";
 
-const verifyToken = (req, res ,next) => {
+export const verifyToken = (req, res ,next) => {
 	const authHeader = req.headers.token;
 	if (authHeader) {
 		jwt.verify(token, process.env.SECRET_KEY_ACCESS_TOKEN, (error, user) => {
@@ -13,5 +13,3 @@ const verifyToken = (req, res ,next) => {
 		return res.status(401).json("Invalid Authenticated!");
 	}
 };
-
-export default verifyToken;
