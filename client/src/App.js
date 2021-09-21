@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {Cart, Category, Home, Login, NotFound, Product, Register} from "./pages";
+import {Cart, Category, Home, Login, NotFound, Payment, Product, Register, Success} from "./pages";
 import "./App.css";
 
 const App = () => {
@@ -12,6 +12,8 @@ const App = () => {
 				<Route exact path={"/categories"} component={Category}/>
 				<Route exact path={"/products"} component={Product}/>
 				<Route exact path={"/cart"} component={Cart}/>
+				<Route exact path={"/payment"} component={Payment}/>
+				<Route exact path={"/success"} component={Success}/>
 				<Route exact path={""} component={NotFound}/>
 			</Switch>
 		</BrowserRouter>
