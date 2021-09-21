@@ -1,6 +1,10 @@
+import dotenv from "dotenv";
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_KEY);
+dotenv.config();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY,{
+	apiVersion: '2020-08-27',
+});
 
 // PAYMENT
 export const payment = (req, res) => {
@@ -10,9 +14,10 @@ export const payment = (req, res) => {
 		currency: "cad"
 	}, (stripeErr, stripeRes) => {
 		if (stripeErr) {
+			console.log(stripeErr)
 			res.status(500).json(stripeErr);
 		} else {
 			res.status(200).json(stripeRes);
 		}
-	}).then(r => console.log(r));
+	});
 };
