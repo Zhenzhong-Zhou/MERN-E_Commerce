@@ -1,6 +1,6 @@
+import {Link} from "react-router-dom";
 import {FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined} from "@material-ui/icons";
 import {Circle, Container, Icon, Image, InfoContainer} from "../../../styles/product";
-import {Link} from "react-router-dom";
 
 const Product = ({item}) => {
 	return (

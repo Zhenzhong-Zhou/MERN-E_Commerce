@@ -1,7 +1,21 @@
+import {useState} from "react";
+import {useLocation} from "react-router-dom";
 import {Container, Filter, FilterContainer, FilterText, Option, Select, Title} from "../../styles/categoryPage";
 import {Announcement, Footer, Navbar, Newsletter, Products} from "../../components";
 
 const Category = () => {
+	const location = useLocation();
+	const category = location.pathname.split("/")[2];
+	const [filters, setFilter] = useState({});
+	const [sort, setSort] = useState("newest");
+
+	const handleFilters = (e) => {
+		const value = e.target.value;
+		setFilter({
+			...filters, [e.target.name]: value
+		});
+	}
+
 	return (
 		<Container>
 			<Announcement/>
@@ -10,8 +24,8 @@ const Category = () => {
 			<FilterContainer>
 				<Filter>
 					<FilterText>Filter Products: </FilterText>
-					<Select>
-						<Option disabled defaultValue={"Color"}>
+					<Select name={"color"} onChange={handleFilters}>
+						<Option disabled>
 							Color
 						</Option>
 						<Option>White</Option>
@@ -21,8 +35,8 @@ const Category = () => {
 						<Option>Yellow</Option>
 						<Option>Green</Option>
 					</Select>
-					<Select>
-						<Option disabled defaultValue={"Size"}>
+					<Select name={"size"} onChange={handleFilters}>
+						<Option disabled>
 							Size
 						</Option>
 						<Option>XS</Option>
@@ -34,14 +48,14 @@ const Category = () => {
 				</Filter>
 				<Filter>
 					<FilterText>Sort Products:</FilterText>
-					<Select>
-						<Option defaultValue={"Newest"}>Newest</Option>
-						<Option>Price (asc)</Option>
-						<Option>Price (desc)</Option>
+					<Select onChange={event => setSort(event.target.value)}>
+						<Option value={"newest"}>Newest</Option>
+						<Option value={"asc"}>Price (asc)</Option>
+						<Option value={"desc"}>Price (desc)</Option>
 					</Select>
 				</Filter>
 			</FilterContainer>
-			<Products/>
+			<Products category={category} filters={filters} sort={sort}/>
 			<Newsletter/>
 			<Footer/>
 		</Container>

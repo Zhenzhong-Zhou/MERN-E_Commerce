@@ -7,7 +7,7 @@ const Category = ({item}) => {
 			<Image src={item.img}/>
 			<InfoContainer>
 				<Title>{item.title}</Title>
-				<Link to={"/categories"} className={"link"}>
+				<Link to={`/categories/${item.category}`} className={"link"}>
 					<Button>SHOP NOW</Button>
 				</Link>
 			</InfoContainer>

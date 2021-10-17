@@ -10,7 +10,7 @@ const App = () => {
 				<Route exact path={"/register"} component={() => (user ? <Redirect to={"/"}/> : Register)}/>
 				<Route exact path={"/login"} component={() => (user ? <Redirect to={"/"}/> : Login)}/>
 				<Route exact path={"/"} component={Home}/>
-				<Route exact path={"/categories/:products"} component={Category}/>
+				<Route exact path={"/categories/:category"} component={Category}/>
 				<Route exact path={"/products/:id"} component={Product}/>
 				<Route exact path={"/cart"} component={Cart}/>
 				<Route exact path={"/payment"} component={Payment}/>
