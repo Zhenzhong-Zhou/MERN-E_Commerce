@@ -4,13 +4,13 @@ import {Button, Container, Image, InfoContainer, Title} from "../../../styles/ca
 const Category = ({item}) => {
 	return (
 		<Container>
-			<Image src={item.img}/>
-			<InfoContainer>
-				<Title>{item.title}</Title>
-				<Link to={`/categories/${item.category}`} className={"link"}>
+			<Link to={`/categories/${item.category}`} className={"link"}>
+				<Image src={item.img}/>
+				<InfoContainer>
+					<Title>{item.title}</Title>
 					<Button>SHOP NOW</Button>
-				</Link>
-			</InfoContainer>
+				</InfoContainer>
+			</Link>
 		</Container>
 	);
 };

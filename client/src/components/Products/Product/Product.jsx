@@ -6,7 +6,7 @@ const Product = ({item}) => {
 	return (
 		<Container>
 			<Circle/>
-			<Image src={item.img}/>
+			<Image src={item.image}/>
 			<InfoContainer>
 				<Icon>
 					<Link to={"/cart"} className={"link"}>
