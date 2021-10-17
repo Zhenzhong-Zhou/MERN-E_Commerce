@@ -1,16 +1,17 @@
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {Cart, Category, Home, Login, NotFound, Payment, Product, Register, Success} from "./pages";
 import "./App.css";
 
 const App = () => {
+	const user = true;
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route exact path={"/register"} component={Register}/>
-				<Route exact path={"/login"} component={Login}/>
+				<Route exact path={"/register"} component={() => (user ? <Redirect to={"/"}/> : Register)}/>
+				<Route exact path={"/login"} component={() => (user ? <Redirect to={"/"}/> : Login)}/>
 				<Route exact path={"/"} component={Home}/>
-				<Route exact path={"/categories"} component={Category}/>
-				<Route exact path={"/products"} component={Product}/>
+				<Route exact path={"/categories/:products"} component={Category}/>
+				<Route exact path={"/products/:id"} component={Product}/>
 				<Route exact path={"/cart"} component={Cart}/>
 				<Route exact path={"/payment"} component={Payment}/>
 				<Route exact path={"/success"} component={Success}/>
