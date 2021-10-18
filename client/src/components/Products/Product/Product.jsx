@@ -14,7 +14,7 @@ const Product = ({item}) => {
 					</Link>
 				</Icon>
 				<Icon>
-					<Link to={"/products"} className={"link"}>
+					<Link to={`/product/${item._id}`} className={"link"}>
 						<SearchOutlined/>
 					</Link>
 				</Icon>
