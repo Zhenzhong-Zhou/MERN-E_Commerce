@@ -1,3 +1,4 @@
+import {useSelector} from "react-redux";
 import {Add, Remove} from "@material-ui/icons";
 import {
 	Bottom, Button,
@@ -22,9 +23,10 @@ import {
 	Wrapper
 } from "../../styles/cart";
 import {Announcement, Footer, Navbar} from "../../components";
-import winter_jacket from "../../assets/images/winter_jacket.jpg";
+import {Link} from "react-router-dom";
 
 const Cart = () => {
+	const cart = useSelector(state => state.cart);
 	return (
 		<Container>
 			<Announcement/>
@@ -32,7 +34,9 @@ const Cart = () => {
 			<Wrapper>
 				<Title>YOUR BAG</Title>
 				<Top>
-					<TopButton>CONTINUE SHOPPING</TopButton>
+					<Link to={"/"}>
+						<TopButton>CONTINUE SHOPPING</TopButton>
+					</Link>
 					<TopTextContainer>
 						<TopText>Shopping Bag (2)</TopText>
 						<TopText>Your Wishlist (0)</TopText>
@@ -41,32 +45,34 @@ const Cart = () => {
 				</Top>
 				<Bottom>
 					<Info>
-						<Product>
-							<ProductDetail>
-								<Image src={winter_jacket}/>
-								<Details>
-									<ProductName><b>Product: </b>THORSEN PARKA - MENS</ProductName>
-									<ProductId><b>ID: </b>19717F21</ProductId>
-									<ProductColor color={"black"}/>
-									<ProductSize><b>Size: </b>XL</ProductSize>
-								</Details>
-							</ProductDetail>
-							<PriceDetail>
-								<ProductAmountContainer>
-									<Add/>
-									<ProductAmount>2</ProductAmount>
-									<Remove/>
-								</ProductAmountContainer>
-								<ProductPrice>$ 999.99</ProductPrice>
-							</PriceDetail>
-						</Product>
-						<Hr/>
+						{cart.products.map(product => (
+							<Product>
+								<ProductDetail>
+									<Image src={product.image}/>
+									<Details>
+										<ProductName><b>Product: </b>{product.title}</ProductName>
+										<ProductId><b>ID: </b>{product._id}</ProductId>
+										<ProductColor color={product.color}/>
+										<ProductSize><b>Size: </b>{product.size}</ProductSize>
+									</Details>
+								</ProductDetail>
+								<PriceDetail>
+									<ProductAmountContainer>
+										<Add/>
+										<ProductAmount>{product.quantity}</ProductAmount>
+										<Remove/>
+									</ProductAmountContainer>
+									<ProductPrice>$ {product.price * product.quantity}</ProductPrice>
+								</PriceDetail>
+							</Product>
+						))}
+							<Hr/>
 					</Info>
 					<Summary>
 						<SummaryTitle>ORDER SUMMARY</SummaryTitle>
 						<SummaryItem>
 							<SummaryItemText>Subtotal: </SummaryItemText>
-							<SummaryItemPrice>$ 1010.10</SummaryItemPrice>
+							<SummaryItemPrice>$ {cart.subtotal}</SummaryItemPrice>
 						</SummaryItem>
 						<SummaryItem>
 							<SummaryItemText>Estimated Shipping: </SummaryItemText>
@@ -78,7 +84,7 @@ const Cart = () => {
 						</SummaryItem>
 						<SummaryItem type={"total"}>
 							<SummaryItemText>Order Total: </SummaryItemText>
-							<SummaryItemPrice>$ 1010.10</SummaryItemPrice>
+							<SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
 						</SummaryItem>
 						<Button>CHECKOUT NOW</Button>
 					</Summary>
