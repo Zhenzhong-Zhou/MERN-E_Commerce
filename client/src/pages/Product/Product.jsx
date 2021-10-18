@@ -1,3 +1,5 @@
+import {useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
 import {useLocation} from "react-router-dom";
 import {Add, Remove} from "@material-ui/icons";
 import {
@@ -13,11 +15,12 @@ import {
 	Wrapper
 } from "../../styles/productPage";
 import {Announcement, Footer, Navbar, Newsletter} from "../../components";
-import {useEffect, useState} from "react";
 import {axiosInstance} from "../../api";
+import {addProduct} from "../../redux/cart";
 
 const Product = () => {
 	const location = useLocation();
+	const dispatch = useDispatch();
 	const id = location.pathname.split("/")[2];
 	const [product, setProduct] = useState({});
 	const [quantity, setQuantity] = useState(1);
@@ -46,7 +49,7 @@ const Product = () => {
 
 	const handleCart= () => {
 		// Update Cart
-
+		dispatch(addProduct({...product, quantity, color, size}));
 	};
 
 	return (
