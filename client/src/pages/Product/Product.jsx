@@ -1,3 +1,4 @@
+import {useLocation} from "react-router-dom";
 import {Add, Remove} from "@material-ui/icons";
 import {
 	AddCartButton,
@@ -12,53 +13,77 @@ import {
 	Wrapper
 } from "../../styles/productPage";
 import {Announcement, Footer, Navbar, Newsletter} from "../../components";
-import product from "../../assets/images/product3.jpeg";
+import {useEffect, useState} from "react";
+import {axiosInstance} from "../../api";
 
 const Product = () => {
+	const location = useLocation();
+	const id = location.pathname.split("/")[2];
+	const [product, setProduct] = useState({});
+	const [quantity, setQuantity] = useState(1);
+	const [color, setColor] = useState("");
+	const [size, setSize] = useState("");
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+			try {
+				const {data} = await axiosInstance.get(`products/find/${id}`);
+				setProduct(data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchProduct();
+		}, [id]);
+
+	const handleQuantity = (type) => {
+	  if (type === "decrease") {
+		  quantity > 1 && setQuantity(quantity - 1);
+	  } else {
+		  setQuantity(quantity + 1);
+	  }
+	};
+
+	const handleCart= () => {
+		// Update Cart
+
+	};
+
 	return (
 		<Container>
 			<Announcement/>
 			<Navbar/>
 			<Wrapper>
 				<ImageContainer>
-					<Image src={product}/>
+					<Image src={product.image}/>
 				</ImageContainer>
 				<InfoContainer>
-					<Title>RUSH JACKET - MENS</Title>
-					<Description>
-						Built for big mountains, the Rush Jacket delivers protection and durability without sacrificing
-						lightweight, comfortable performance. Made from GORE-TEX PRO with Most Rugged Technology – their
-						strongest available – it gives exceptionally durable waterproof, windproof protection, but is
-						breathable for comfort on ascents. A helmet compatible StormHood™ provides additional coverage
-						with minimal impact on vision, WaterTight™ pit zippers speed ventilation, and articulated
-						patterning maximizes mobility.
-					</Description>
-					<Price>$899.99</Price>
+					<Title>{product.title}</Title>
+					<Description>{product.description}</Description>
+					<Price>$ {product.price}</Price>
 					<FilterContainer>
 						<Filter>
 							<FilterTitle>Color</FilterTitle>
-							<FilterColor color={"black"}/>
-							<FilterColor color={"darkblue"}/>
-							<FilterColor color={"gray"}/>
+							{product.color && product.color?.map((color) => ( // two ways to avoid undefined: product.color is true; add ? mark
+								<FilterColor color={color} key={color} onClick={() => setColor(color)}/>
+							))}
 						</Filter>
 						<Filter>
 							<FilterTitle>Size</FilterTitle>
-							<FilterSize>
-								<FilterSizeOption>XS</FilterSizeOption>
-								<FilterSizeOption>S</FilterSizeOption>
-								<FilterSizeOption>M</FilterSizeOption>
-								<FilterSizeOption>L</FilterSizeOption>
-								<FilterSizeOption>XL</FilterSizeOption>
+							<FilterSize onChange={(event => setSize(event.target.value))}>
+								{product.size && product.size?.map(size => ( // two ways to avoid undefined: product.color is true; add ? mark
+									<FilterSizeOption key={size}>{size}</FilterSizeOption>
+								))}
 							</FilterSize>
 						</Filter>
 					</FilterContainer>
 					<AddContainer>
 						<AmountContainer>
-							<Remove/>
-							<Amount>1</Amount>
-							<Add/>
+							<Remove onClick={() => handleQuantity("decrease")}/>
+							<Amount>{quantity}</Amount>
+							<Add onClick={() => handleQuantity("increase")}/>
 						</AmountContainer>
-						<AddCartButton>ADD TO CART</AddCartButton>
+						<AddCartButton onClick={handleCart}>ADD TO CART</AddCartButton>
 					</AddContainer>
 				</InfoContainer>
 			</Wrapper>
