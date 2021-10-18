@@ -12,7 +12,6 @@ const Products = ({category, filters, sort}) => {
 			try {
 				const {data} = await axiosInstance.get(category ? `products?categories=${category}` : "products");
 				setProducts(data);
-				console.log(data)
 			} catch (error) {
 				console.log(error);
 			}
