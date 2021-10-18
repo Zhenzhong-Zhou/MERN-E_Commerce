@@ -44,6 +44,7 @@ const Category = () => {
 						<Option>M</Option>
 						<Option>L</Option>
 						<Option>XL</Option>
+						<Option>XXL</Option>
 					</Select>
 				</Filter>
 				<Filter>
