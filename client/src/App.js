@@ -3,12 +3,12 @@ import {Cart, Category, Home, Login, NotFound, Payment, Product, Register, Succe
 import "./App.css";
 
 const App = () => {
-	const user = true;
+	const user = false;
 	return (
 		<BrowserRouter>
 			<Switch>
 				<Route exact path={"/register"} component={() => (user ? <Redirect to={"/"}/> : Register)}/>
-				<Route exact path={"/login"} component={() => (user ? <Redirect to={"/"}/> : Login)}/>
+				<Route exact path={"/login"} component={() => (user ? <Redirect to={"/"}/> : <Login/>)}/>
 				<Route exact path={"/"} component={Home}/>
 				<Route exact path={"/categories/:category"} component={Category}/>
 				<Route exact path={"/product/:id"} component={Product}/>
