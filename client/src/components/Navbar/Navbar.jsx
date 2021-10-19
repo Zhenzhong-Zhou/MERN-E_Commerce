@@ -5,6 +5,7 @@ import {Badge} from "@material-ui/core";
 import {Center, Container, Input, Language, Left, Logo, MenuItem, Right, SearchContainer, Wrapper} from "../../styles/navbar.js";
 
 const Navbar = () => {
+	const user = useSelector(state => state.user.currentUser);
 	const quantity = useSelector(state => state.cart.quantity);
 
 	return (
@@ -23,12 +24,21 @@ const Navbar = () => {
 					<Center><Logo>E-Commerce</Logo></Center>
 				</Link>
 				<Right>
-					<Link to={"/register"} className={"link"}>
-						<MenuItem>REGISTER</MenuItem>
-					</Link>
-					<Link to={"/login"} className={"link"}>
-						<MenuItem>SIGN IN</MenuItem>
-					</Link>
+					{!user &&
+						<>
+							<Link to={"/register"} className={"link"}>
+								<MenuItem>REGISTER</MenuItem>
+							</Link>
+							<Link to={"/login"} className={"link"}>
+								<MenuItem>SIGN IN</MenuItem>
+							</Link>
+						</>
+					}
+					{user &&
+						<>
+							<span>{user.username} </span>
+						</>
+					}
 					<Link to={"/cart"} className={"link"}>
 						<MenuItem>
 							<Badge badgeContent={quantity} color={"primary"}>
