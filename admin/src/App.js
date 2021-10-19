@@ -6,11 +6,11 @@ import {Home, Login, NewProduct, NewUser, Product, ProductList, User, UserList} 
 const App = () => {
 	return (
 		<BrowserRouter>
-			<Route exact path={"/login"} component={() => <Login/>}/>
-			<NavBar/>
-			<div className={"container"}>
-				<SideBar/>
-				<Switch>
+			<Switch>
+				<Route exact path={"/login"} component={() => <Login/>}/>
+				<NavBar/>
+				<div className={"container"}>
+					<SideBar/>
 					<Route exact path={"/"} component={Home}/>
 					<Route exact path={"/users"} component={UserList}/>
 					<Route exact path={"/user/:userId"} component={User}/>
@@ -18,8 +18,8 @@ const App = () => {
 					<Route exact path={"/products"} component={ProductList}/>
 					<Route exact path={"/product/:productId"} component={Product}/>
 					<Route exact path={"/newProduct"} component={NewProduct}/>
-				</Switch>
-			</div>
+				</div>
+			</Switch>
 		</BrowserRouter>
 	);
 };
