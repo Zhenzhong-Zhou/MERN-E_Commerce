@@ -9,4 +9,5 @@ reactDOM.render(
 		<PersistGate loading={"null"} persistor={persi_store}>
 			<App />
 		</PersistGate>
-	</Provider>, document.getElementById("root"));
+	</Provider>, document.getElementById("root")
+);
