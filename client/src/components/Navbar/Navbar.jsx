@@ -24,7 +24,7 @@ const Navbar = () => {
 					<Center><Logo>E-Commerce</Logo></Center>
 				</Link>
 				<Right>
-					{!user &&
+					{!user && (
 						<>
 							<Link to={"/register"} className={"link"}>
 								<MenuItem>REGISTER</MenuItem>
@@ -33,7 +33,7 @@ const Navbar = () => {
 								<MenuItem>SIGN IN</MenuItem>
 							</Link>
 						</>
-					}
+					)}
 					{user &&
 						<>
 							<span>{user.username} </span>

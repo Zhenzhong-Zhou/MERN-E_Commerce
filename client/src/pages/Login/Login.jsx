@@ -20,7 +20,7 @@ const Login = () => {
 				<Title>SIGN IN</Title>
 				<Form>
 					{error && <Error>Your username or password is incorrect...</Error>}
-					<Input placeholder={"Username"} onChange={event => setUsername(event.target.value)}/>
+					<Input placeholder={"Username"} type={"text"} onChange={event => setUsername(event.target.value)}/>
 					<Input placeholder={"Password"} type={"password"} onChange={event => setPassword(event.target.value)}/>
 					<Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
 					<Link href={"/register"} className={"link"}>CREATE A NEW ACCOUNT</Link>
