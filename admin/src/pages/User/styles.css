@@ -1,0 +1,76 @@
+.user {
+    flex: 4;
+    padding: 20px;
+}
+
+.userTitleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userTitle {
+
+}
+
+.userAddButton {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.userContainer {
+    display: flex;
+    margin-top: 20px;
+}
+
+.userDisplay {
+    flex: 1;
+    padding: 20px;
+    -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.userDisplayTop {
+    display: flex;
+    align-items: center;
+}
+
+.userDisplayImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userDisplayTopTitle {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.userDisplayUsername {
+    font-weight: 600;
+}
+
+.userDisplayUserTitle {
+    font-weight: 300;
+}
+
+.userUpdate {
+    flex: 2;
+    padding: 20px;
+    -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    margin-left: 20px;
+}
+
+.userUpdateTitle {
+    font-size: 24px;
+    font-weight: 600;
+}

@@ -1,0 +1,41 @@
+.product {
+    flex: 4;
+    padding: 20px;
+}
+
+.productTitleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.productTitle {
+
+}
+
+.productAddButton {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.productTop {
+    display: flex;
+
+}
+
+.productBottom {
+    padding: 20px;
+    margin: 20px;
+    -webkit-box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.productTopLeft {
+    flex: 1;
+}

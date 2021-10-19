@@ -1,0 +1,30 @@
+.sidebarMenu {
+    margin-bottom: 10px;
+}
+
+.sidebarTitle {
+    font-size: 13px;
+    color: #bbbaba;
+}
+
+.sidebarList {
+    list-style: none;
+    padding: 5px;
+}
+
+.sidebarListItem {
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.sidebarListItem.active, .sidebarListItem:hover {
+    background-color: #f0f0ff;
+}
+
+.sidebarIcon {
+    margin-right: 5px;
+    font-size: 20px !important;
+}
