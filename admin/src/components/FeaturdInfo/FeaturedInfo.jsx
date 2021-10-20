@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import "./styles.css";
 import {Cost, Revenue, Sale} from "../index";
 import {axiosUser} from "../../api";
 
 const FeaturedInfo = () => {
+	const admin = useSelector(state => state.user.currentUser);
+	const TOKEN = admin.accessToken;
 	const [income, setIncome] = useState([]);
 	const [percentage, setPercentage] = useState(0);
-	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 
 	useEffect(() => {
 		const fetchIncome = async () => {

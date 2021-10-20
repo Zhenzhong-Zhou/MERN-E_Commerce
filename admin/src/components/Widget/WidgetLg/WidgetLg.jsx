@@ -4,10 +4,12 @@ import "./styles.css";
 import user from "../../../assets/images/user1.jpeg";
 import {Button} from "../../index";
 import {axiosUser} from "../../../api";
+import {useSelector} from "react-redux";
 
 const WidgetLg = () => {
+	const admin = useSelector(state => state.user.currentUser);
+	const TOKEN = admin.accessToken;
 	const [orders, setOrders] = useState([]);
-	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 
 	useEffect(() => {
 		const fetchOrders = async () => {

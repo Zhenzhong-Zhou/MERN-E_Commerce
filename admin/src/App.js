@@ -10,7 +10,7 @@ const App = () => {
 		<BrowserRouter>
 			<Switch>
 				<Route exact path={"/login"} component={() => (admin ? <Redirect to={"/"}/> : <Login/>)}/>
-				{admin && (
+				{admin ? (
 					<>
 						<NavBar/>
 						<div className={"container"}>
@@ -24,7 +24,7 @@ const App = () => {
 							<Route exact path={"/newProduct"} component={NewProduct}/>
 						</div>
 					</>
-				)}
+				) : <Redirect to={"/login"}/>}
 				<Route exact path={""} component={NotFound}/>
 			</Switch>
 		</BrowserRouter>

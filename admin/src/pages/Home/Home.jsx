@@ -4,7 +4,6 @@ import {Chart, FeaturedInfo, WidgetLg, WidgetSm} from "../../components";
 import {axiosUser} from "../../api";
 
 const Home = () => {
-	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 	const [userStatus, setUserStatus] = useState([]);
 	const months = useMemo(() => [
 		"January", "February", "March",
@@ -16,9 +15,7 @@ const Home = () => {
 	useEffect(() => {
 		const fetchStatus = async () => {
 			try {
-				const {data} = await axiosUser.get("users/status", {
-					headers: {token: `Bearer ${TOKEN}`}
-				});
+				const {data} = await axiosUser.get("users/status");
 				const statusList = data.sort((a, b) => {return a._id - b._id});
 				statusList.map(item =>
 					setUserStatus(prevState => [
@@ -31,7 +28,7 @@ const Home = () => {
 			}
 		};
 		fetchStatus();
-	}, [months, TOKEN]);
+	}, [months]);
 
 	return (
 		<div className={"home"}>

@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import {Visibility} from "@material-ui/icons";
 import "./styles.css";
 import avatar from "../../../assets/images/avatar.png";
 import {axiosUser} from "../../../api";
 
 const WidgetSm = () => {
+	const admin = useSelector(state => state.user.currentUser);
+	const TOKEN = admin.accessToken;
 	const [users, setUsers] = useState([]);
-	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 
 	useEffect(() => {
 		const fetchUsers = async () => {

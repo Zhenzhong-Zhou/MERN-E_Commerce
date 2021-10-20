@@ -2,7 +2,6 @@ import {ArrowDownward, ArrowUpward} from "@material-ui/icons";
 import "./styles.css";
 
 const Revenue = ({income, percentage}) => {
-	console.log("rev: ", income)
 	return (
 		<div className={"featuredItem"}>
 			<span className={"featuredTitle"}>Revenue</span>
