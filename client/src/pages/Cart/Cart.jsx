@@ -28,8 +28,6 @@ import {
 import {Announcement, Footer, Navbar} from "../../components";
 import {axiosUser} from "../../api";
 
-// const STRIPE_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
-
 const Cart = () => {
 	const cart = useSelector(state => state.cart);
 	const history = useHistory();
@@ -44,7 +42,7 @@ const Cart = () => {
 			try {
 				const {data} = await axiosUser.post("/checkout/payment", {
 					tokenId: stripeToken.id,
-					amount: 500
+					amount: Math.round(((cart.total*100)*100)/100)
 				});
 				history.push("/success", {stripeData: data, products: cart});
 			} catch (error) {
@@ -73,7 +71,7 @@ const Cart = () => {
 				<Bottom>
 					<Info>
 						{cart.products.map(product => (
-							<Product>
+							<Product key={product._id}>
 								<ProductDetail>
 									<Image src={product.image}/>
 									<Details>
@@ -99,7 +97,7 @@ const Cart = () => {
 						<SummaryTitle>ORDER SUMMARY</SummaryTitle>
 						<SummaryItem>
 							<SummaryItemText>Subtotal: </SummaryItemText>
-							<SummaryItemPrice>$ {cart.subtotal}</SummaryItemPrice>
+							<SummaryItemPrice>$ {cart.subtotal.toFixed(2)}</SummaryItemPrice>
 						</SummaryItem>
 						<SummaryItem>
 							<SummaryItemText>Estimated Shipping: </SummaryItemText>
@@ -111,10 +109,11 @@ const Cart = () => {
 						</SummaryItem>
 						<SummaryItem type={"total"}>
 							<SummaryItemText>Order Total: </SummaryItemText>
-							<SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+							<SummaryItemPrice>$ {cart.total.toFixed(2)}</SummaryItemPrice>
 						</SummaryItem>
 						<StripeCheckout name={"E-Commerce"} image={"https://5b0988e595225.cdn.sohucs.com/images/20180319/f8e17b2a585147838a946d41a22b7f79.jpg"}
-						                billingAddress shippingAddress description={`Your total is $${cart.total}.`} amount={cart.total * 10000} token={onToken} stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
+						                billingAddress shippingAddress description={`Your total is $${cart.total}.`}
+						                amount={cart.total * 10000} token={onToken} stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
 							<Button>
 								CHECKOUT NOW
 							</Button>
