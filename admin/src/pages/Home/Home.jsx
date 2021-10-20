@@ -2,8 +2,11 @@ import {useEffect, useMemo, useState} from "react";
 import "./styles.css";
 import {Chart, FeaturedInfo, WidgetLg, WidgetSm} from "../../components";
 import {axiosUser} from "../../api";
+import {useSelector} from "react-redux";
 
 const Home = () => {
+	const admin = useSelector(state => state.user.currentUser);
+	const TOKEN = admin.accessToken;
 	const [userStatus, setUserStatus] = useState([]);
 	const months = useMemo(() => [
 		"January", "February", "March",
@@ -15,7 +18,9 @@ const Home = () => {
 	useEffect(() => {
 		const fetchStatus = async () => {
 			try {
-				const {data} = await axiosUser.get("users/status");
+				const {data} = await axiosUser.get("users/status", {
+					headers: {token: `Bearer ${TOKEN}`}
+				});
 				const statusList = data.sort((a, b) => {return a._id - b._id});
 				statusList.map(item =>
 					setUserStatus(prevState => [
@@ -28,7 +33,7 @@ const Home = () => {
 			}
 		};
 		fetchStatus();
-	}, [months]);
+	}, [months, TOKEN]);
 
 	return (
 		<div className={"home"}>
