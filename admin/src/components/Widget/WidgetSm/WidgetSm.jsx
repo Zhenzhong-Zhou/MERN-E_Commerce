@@ -1,20 +1,37 @@
-import "./styles.css";
-import user from "../../../assets/images/user.jpeg";
+import {useEffect, useState} from "react";
 import {Visibility} from "@material-ui/icons";
+import "./styles.css";
+import avatar from "../../../assets/images/avatar.png";
+import {axiosUser} from "../../../api";
 
 const WidgetSm = () => {
+	const [users, setUsers] = useState([]);
+
+	useEffect(() => {
+		const fetchUsers = async () => {
+			try {
+				const {data} = await axiosUser.get("users/?new=true");
+				setUsers(data);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchUsers();
+	}, []);
+
 	return (
 		<div className={"WidgetSm"}>
 			<span className={"WidgetSmTitle"}>New Join Members</span>
 			<ul className={"WidgetSmList"}>
-				<li className={"WidgetSmListItem"}>
-					<img src={user} alt={"Avatar"} className={"WidgetSmImg"}/>
-					<div className={"WidgetSmUser"}>
-						<span className={"WidgetSmUsername"}>Crystal Liu</span>
-						<span className={"WidgetSmUserTitle"}>Actress</span>
-					</div>
-					<button className={"WidgetSmButton"}><Visibility className={"WidgetSmIcon"}/>Display</button>
-				</li>
+				{users.map((user) => (
+					<li className={"WidgetSmListItem"} key={user._id}>
+						<img src={user.profile || avatar} alt={"Avatar"} className={"WidgetSmImg"}/>
+						<div className={"WidgetSmUser"}>
+							<span className={"WidgetSmUsername"}>{user.username}</span>
+						</div>
+						<button className={"WidgetSmButton"}><Visibility className={"WidgetSmIcon"}/>Display</button>
+					</li>
+				))}
 			</ul>
 		</div>
 	);
