@@ -11,3 +11,4 @@ export {default as Product} from "./Product/Product";
 export {default as ProductTopRight} from "./Product/ProductTopRight/ProductTopRight";
 export {default as ProductForm} from "./Product/ProductForm/ProductForm";
 export {default as NewProduct} from "./NewProduct/NewProduct";
+export {default as NotFound} from "./NotFound/NotFound";
