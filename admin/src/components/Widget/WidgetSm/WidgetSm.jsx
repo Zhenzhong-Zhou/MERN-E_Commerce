@@ -6,18 +6,21 @@ import {axiosUser} from "../../../api";
 
 const WidgetSm = () => {
 	const [users, setUsers] = useState([]);
+	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 
 	useEffect(() => {
 		const fetchUsers = async () => {
 			try {
-				const {data} = await axiosUser.get("users/?new=true");
+				const {data} = await axiosUser.get("users/?new=true", {
+					headers: {token: `Bearer ${TOKEN}`}
+				});
 				setUsers(data);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		fetchUsers();
-	}, []);
+	}, [TOKEN]);
 
 	return (
 		<div className={"WidgetSm"}>

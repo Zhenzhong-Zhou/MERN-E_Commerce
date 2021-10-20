@@ -33,6 +33,8 @@ const Cart = () => {
 	const history = useHistory();
 	const [stripeToken, setStripeToken] = useState(null);
 
+	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
+
 	const onToken = (token) => {
 		setStripeToken(token);
 	};
@@ -43,14 +45,14 @@ const Cart = () => {
 				const {data} = await axiosUser.post("/checkout/payment", {
 					tokenId: stripeToken.id,
 					amount: Math.round(((cart.total*100)*100)/100)
-				});
+				}, {headers: {token: `Bearer ${TOKEN}`}});
 				history.push("/success", {stripeData: data, products: cart});
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		stripeToken && makeRequest();
-	}, [stripeToken, cart, cart.total, history]);
+	}, [stripeToken, cart, cart.total, history, TOKEN]);
 
 	return (
 		<Container>

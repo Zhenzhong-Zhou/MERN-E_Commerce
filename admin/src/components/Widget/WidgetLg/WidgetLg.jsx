@@ -7,18 +7,21 @@ import {axiosUser} from "../../../api";
 
 const WidgetLg = () => {
 	const [orders, setOrders] = useState([]);
+	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 
 	useEffect(() => {
 		const fetchOrders = async () => {
 			try {
-				const {data} = await axiosUser.get("orders");
+				const {data} = await axiosUser.get("orders", {
+					headers: {token: `Bearer ${TOKEN}`}
+				});
 				setOrders(data);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		fetchOrders();
-	}, []);
+	}, [TOKEN]);
 	return (
 		<div className={"widgetLg"}>
 			<h3 className={"widgetLgTitle"}>Latest transactions</h3>
