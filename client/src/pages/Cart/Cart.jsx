@@ -28,7 +28,7 @@ import {
 import {Announcement, Footer, Navbar} from "../../components";
 import {axiosUser} from "../../api";
 
-const STRIPE_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
+// const STRIPE_KEY = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 
 const Cart = () => {
 	const cart = useSelector(state => state.cart);
@@ -46,13 +46,13 @@ const Cart = () => {
 					tokenId: stripeToken.id,
 					amount: 500
 				});
-				history.push("/success", {data: data});
+				history.push("/success", {stripeData: data, products: cart});
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		stripeToken && makeRequest();
-	}, [stripeToken, cart.total, history]);
+	}, [stripeToken, cart, cart.total, history]);
 
 	return (
 		<Container>
@@ -115,9 +115,9 @@ const Cart = () => {
 						</SummaryItem>
 						<StripeCheckout name={"E-Commerce"} image={"https://5b0988e595225.cdn.sohucs.com/images/20180319/f8e17b2a585147838a946d41a22b7f79.jpg"}
 						                billingAddress shippingAddress description={`Your total is $${cart.total}.`} amount={cart.total * 10000} token={onToken} stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
-							<button style={{border: "none", width: 120, height: 50, borderRadius: "20px", backgroundColor: "black", color: "white", fontWeight: 600, cursor: "pointer"}}>
+							<Button>
 								CHECKOUT NOW
-							</button>
+							</Button>
 						</StripeCheckout>
 					</Summary>
 				</Bottom>
