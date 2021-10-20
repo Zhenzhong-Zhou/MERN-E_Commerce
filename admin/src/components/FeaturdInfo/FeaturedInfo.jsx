@@ -17,7 +17,7 @@ const FeaturedInfo = () => {
 					headers: {token: `Bearer ${TOKEN}`}
 				});
 				setIncome(data);
-				setPercentage((data[0].total*100) / data[1].total - 100)
+				setPercentage((data[1].total*100) / data[0].total - 100)
 			} catch (error) {
 				console.log(error);
 			}
