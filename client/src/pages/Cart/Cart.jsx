@@ -29,11 +29,11 @@ import {Announcement, Footer, Navbar} from "../../components";
 import {axiosUser} from "../../api";
 
 const Cart = () => {
+	const admin = useSelector(state => state.user.currentUser);
+	const TOKEN = admin.accessToken;
 	const cart = useSelector(state => state.cart);
 	const history = useHistory();
 	const [stripeToken, setStripeToken] = useState(null);
-
-	const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
 
 	const onToken = (token) => {
 		setStripeToken(token);
