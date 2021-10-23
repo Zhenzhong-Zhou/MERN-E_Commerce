@@ -1,29 +1,24 @@
 import "./styles.css";
-import airpods from "../../../assets/images/airpods.jpeg";
 
-const ProductTopRight = () => {
+const ProductTopRight = ({product}) => {
 	return (
 		<div className={"productTopRight"}>
 			<div className={"productInfoTop"}>
-				<img className={"productInfoImg"} src={airpods} alt={"Product Cover"}/>
-				<span className={"productName"}>Apple Airpods</span>
+				<img className={"productInfoImg"} src={product.image} alt={"Product Cover"}/>
+				<span className={"productName"}>{product.title}</span>
 			</div>
 			<div className={"productInfoBottom"}>
 				<div className={"productInfoItem"}>
-					<span className={"productInfoKey"}>id:</span>
-					<span className={"productInfoValue"}>123</span>
+					<span className={"productInfoKey"}>ID:</span>
+					<span className={"productInfoValue"}>{product._id}</span>
 				</div>
 				<div className={"productInfoItem"}>
-					<span className={"productInfoKey"}>sales:</span>
-					<span className={"productInfoValue"}>876</span>
+					<span className={"productInfoKey"}>Price:</span>
+					<span className={"productInfoValue"}>{product.price}</span>
 				</div>
 				<div className={"productInfoItem"}>
-					<span className={"productInfoKey"}>active:</span>
-					<span className={"productInfoValue"}>yes</span>
-				</div>
-				<div className={"productInfoItem"}>
-					<span className={"productInfoKey"}>in stock:</span>
-					<span className={"productInfoValue"}>no</span>
+					<span className={"productInfoKey"}>In Stock:</span>
+					<span className={"productInfoValue"}>{product.inStock.toString()}</span>
 				</div>
 			</div>
 		</div>

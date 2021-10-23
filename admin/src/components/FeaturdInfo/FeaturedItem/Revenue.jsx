@@ -6,7 +6,7 @@ const Revenue = ({income, percentage}) => {
 		<div className={"featuredItem"}>
 			<span className={"featuredTitle"}>Revenue</span>
 			<div className={"featuredMoneyContainer"}>
-				<span className={"featuredMoney"}>${income.map(i => i.total)[1]}</span>
+				<span className={"featuredMoney"}>${income.map(i => i?.total)[1]}</span>
 				<span className={"featuredMoneyRate"}>{Math.floor(percentage)}%
 					{percentage < 0 ? (
 						<ArrowDownward className={"featuredIcon negative"}/>

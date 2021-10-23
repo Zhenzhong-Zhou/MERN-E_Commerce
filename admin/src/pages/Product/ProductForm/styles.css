@@ -20,6 +20,11 @@
     border-bottom: 1px solid gray;
 }
 
+.productFormLeft>textarea {
+    height: 200px;
+    width: 300px;
+}
+
 .productFormLeft>select {
     margin-bottom: 10px;
 }

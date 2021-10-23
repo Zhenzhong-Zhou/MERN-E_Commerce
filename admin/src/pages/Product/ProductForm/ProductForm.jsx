@@ -1,27 +1,26 @@
 import {Publish} from "@material-ui/icons";
 import "./styles.css";
-import airpods from "../../../assets/images/airpods.jpeg";
 
-const ProductForm = () => {
+const ProductForm = ({product}) => {
+	console.log(product)
 	return (
 		<form className={"productForm"}>
 			<div className={"productFormLeft"}>
-				<label>Product Name</label>
-				<input type={"text"} placeholder={"Apple Airpods"}/>
+				<label>Product Title</label>
+				<input type={"text"} placeholder={product.title}/>
+				<label>Product Description</label>
+				<textarea placeholder={product.description}/>
+				<label>Product Price</label>
+				<input type={"text"} placeholder={product.price}/>
 				<label>In Stock</label>
 				<select name={"inStock"} id={"idStock"}>
-					<option value={"yes"}>Yes</option>
-					<option value={"no"}>No</option>
-				</select>
-				<label>Active</label>
-				<select name={"active"} id={"active"}>
-					<option value={"yes"}>Yes</option>
-					<option value={"no"}>No</option>
+					<option value={"true"}>Yes</option>
+					<option value={"false"}>No</option>
 				</select>
 			</div>
 			<div className={"productFormRight"}>
 				<div className={"productUpload"}>
-					<img src={airpods} alt={"Product Cover"} className={"productUploadImg"}/>
+					<img src={product.image} alt={"Product Cover"} className={"productUploadImg"}/>
 					<label htmlFor={"file"}>
 						<Publish/>
 					</label>
