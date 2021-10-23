@@ -1,6 +1,13 @@
 import {loginFailure, loginStart, loginSuccess} from "./user";
 import {axiosUser} from "../api";
-import {fetchProductFailure, fetchProductStart, fetchProductSuccess} from "./product";
+import {
+	deleteProductFailure,
+	deleteProductStart,
+	deleteProductSuccess,
+	fetchProductFailure,
+	fetchProductStart,
+	fetchProductSuccess
+} from "./product";
 
 export const login = async (dispatch, user) => {
 	dispatch(loginStart());
@@ -19,5 +26,15 @@ export const fetchProducts = async (dispatch) => {
 		dispatch(fetchProductSuccess(data));
 	} catch (error) {
 		dispatch(fetchProductFailure());
+	}
+};
+
+export const deleteProducts = async (id, dispatch) => {
+	dispatch(deleteProductStart());
+	try {
+		const {data} = await axiosUser.delete(`products/${id}`);
+		dispatch(deleteProductSuccess(id));
+	} catch (error) {
+		dispatch(deleteProductFailure());
 	}
 };

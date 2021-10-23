@@ -20,9 +20,24 @@ export const productSlice = createSlice({
 		fetchProductFailure: (state) => {
 			state.pending = false;
 			state.error = true;
+		},
+		// DELETE
+		deleteProductStart: (state) => {
+			state.pending = true;
+			state.error = false;
+		},
+		deleteProductSuccess: (state, action) => {
+			state.pending = false;
+			state.products.splice(
+				state.products.findIndex(item => item._id === action.payload), 1
+			);
+		},
+		deleteProductFailure: (state) => {
+			state.pending = false;
+			state.error = true;
 		}
 	}
 });
 
-export const {fetchProductStart, fetchProductSuccess, fetchProductFailure} = productSlice.actions;
+export const {deleteProductStart, deleteProductSuccess, deleteProductFailure} = productSlice.actions;
 export default productSlice.reducer;
