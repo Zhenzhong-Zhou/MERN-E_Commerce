@@ -1,42 +1,44 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {DeleteOutline} from "@material-ui/icons";
 import {DataGrid} from "@mui/x-data-grid";
 import "./styles.css";
 import {productRows} from "../../boilerplateData";
-import {Link} from "react-router-dom";
-import {DeleteOutline} from "@material-ui/icons";
+import {fetchProducts} from "../../redux/api";
 
 const ProductList = () => {
 	const [data, setData] = useState(productRows);
+	const dispatch = useDispatch();
+	const  products = useSelector(state => state.product.products);
+
+	useEffect(() => {
+		fetchProducts(dispatch)
+	}, [dispatch]);
 
 	const handleDelete = (id) => {
 		setData(data.filter(item => item.id !== id));
 	};
 
 	const columns = [
-		{ field: 'id', headerName: 'ID', width: 90 },
+		{ field: '_id', headerName: 'ID', width: 220 },
 		{
 			field: 'product',
 			headerName: 'Product',
-			width: 150,
+			width: 250,
 			editable: true,
 			renderCell: (params) => {
 				return (
 					<div className={"productListItem"}>
 						<img className={"productListImg"} src={params.row.image} alt={"Avatar"}/>
-						{params.row.name}
+						{params.row.title}
 					</div>
 				);
 			}
 		},
 		{
-			field: 'stock',
+			field: 'inStock',
 			headerName: 'Stock',
-			width: 150,
-			editable: true,
-		},
-		{
-			field: 'status',
-			headerName: 'Status',
 			width: 150,
 			editable: true,
 		},
@@ -66,7 +68,9 @@ const ProductList = () => {
 
 	return (
 		<div className={"productList"}>
-			<DataGrid columns={columns} rows={data} pageSize={8} checkboxSelection disableSelectionOnClick/>
+			<DataGrid columns={columns} rows={products} getRowId={row => row._id} pageSize={10}
+			          rowsPerPageOptions={[5, 10, 20, {value: products.length, label: 'All'}]} pagination
+			          checkboxSelection disableSelectionOnClick/>
 		</div>
 	);
 };
