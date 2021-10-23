@@ -2,7 +2,6 @@ import {Publish} from "@material-ui/icons";
 import "./styles.css";
 
 const ProductForm = ({product}) => {
-	console.log(product)
 	return (
 		<form className={"productForm"}>
 			<div className={"productFormLeft"}>
