@@ -1,12 +1,14 @@
 import {loginFailure, loginStart, loginSuccess} from "./user";
 import {axiosUser} from "../api";
 import {
+	createProductFailure,
+	createProductStart, createProductSuccess,
 	deleteProductFailure,
 	deleteProductStart,
 	deleteProductSuccess,
 	fetchProductFailure,
 	fetchProductStart,
-	fetchProductSuccess
+	fetchProductSuccess, updateProductFailure, updateProductStart, updateProductSuccess
 } from "./product";
 
 export const login = async (dispatch, user) => {
@@ -36,8 +38,28 @@ export const deleteProducts = async (id, dispatch) => {
 			headers: {token: `Bearer ` + JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken}
 		});
 		dispatch(deleteProductSuccess(id));
-		// dispatch(deleteProductSuccess(id));
 	} catch (error) {
 		dispatch(deleteProductFailure());
+	}
+};
+
+export const updateProducts = async (id, product, dispatch) => {
+	dispatch(updateProductStart());
+	try {
+		dispatch(updateProductSuccess({id, product}));
+	} catch (error) {
+		dispatch(updateProductFailure());
+	}
+};
+
+export const createProducts = async (product, dispatch) => {
+	dispatch(createProductStart());
+	try {
+		 const {data} = await axiosUser.post("products", product, {
+			headers: {token: `Bearer ` + JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken}
+		});
+		dispatch(createProductSuccess(data));
+	} catch (error) {
+		dispatch(createProductFailure());
 	}
 };
