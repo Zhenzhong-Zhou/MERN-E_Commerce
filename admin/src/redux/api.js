@@ -33,7 +33,7 @@ export const deleteProducts = async (id, dispatch) => {
 	dispatch(deleteProductStart());
 	try {
 		const {data} = await axiosUser.delete(`products/${id}`);
-		dispatch(deleteProductSuccess(id));
+		dispatch(deleteProductSuccess(data));
 	} catch (error) {
 		dispatch(deleteProductFailure());
 	}
