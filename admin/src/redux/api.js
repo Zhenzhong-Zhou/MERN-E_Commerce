@@ -15,7 +15,7 @@ export const login = async (dispatch, user) => {
 export const fetchProducts = async (dispatch) => {
 	dispatch(fetchProductStart());
 	try {
-		const {data} = await axiosUser.post("products");
+		const {data} = await axiosUser.get("products");
 		dispatch(fetchProductSuccess(data));
 	} catch (error) {
 		dispatch(fetchProductFailure());
