@@ -1,5 +1,6 @@
 import {loginFailure, loginStart, loginSuccess} from "./user";
 import {axiosUser} from "../api";
+import {fetchProductFailure, fetchProductStart, fetchProductSuccess} from "./product";
 
 export const login = async (dispatch, user) => {
 	dispatch(loginStart());
@@ -8,5 +9,15 @@ export const login = async (dispatch, user) => {
 		dispatch(loginSuccess(data));
 	} catch (error) {
 		dispatch(loginFailure());
+	}
+};
+
+export const fetchProducts = async (dispatch) => {
+	dispatch(fetchProductStart());
+	try {
+		const {data} = await axiosUser.post("products");
+		dispatch(fetchProductSuccess(data));
+	} catch (error) {
+		dispatch(fetchProductFailure());
 	}
 };
