@@ -1,14 +1,12 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {DeleteOutline} from "@material-ui/icons";
 import {DataGrid} from "@mui/x-data-grid";
 import "./styles.css";
-import {productRows} from "../../boilerplateData";
-import {fetchProducts} from "../../redux/api";
+import {deleteProducts, fetchProducts} from "../../redux/api";
 
 const ProductList = () => {
-	const [data, setData] = useState(productRows);
 	const dispatch = useDispatch();
 	const  products = useSelector(state => state.product.products);
 
@@ -17,7 +15,7 @@ const ProductList = () => {
 	}, [dispatch]);
 
 	const handleDelete = (id) => {
-		setData(data.filter(item => item.id !== id));
+		deleteProducts(id, dispatch);
 	};
 
 	const columns = [
@@ -59,7 +57,7 @@ const ProductList = () => {
 						<Link to={`/product/${params.row.id}`}>
 							<button className={"productListEdit"}>Edit</button>
 						</Link>
-						<DeleteOutline className={"productListDelete"} onClick={() => handleDelete(params.row.id)}/>
+						<DeleteOutline className={"productListDelete"} onClick={() => handleDelete(params.row._id)}/>
 					</>
 				);
 			}

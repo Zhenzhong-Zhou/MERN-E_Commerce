@@ -32,8 +32,11 @@ export const fetchProducts = async (dispatch) => {
 export const deleteProducts = async (id, dispatch) => {
 	dispatch(deleteProductStart());
 	try {
-		const {data} = await axiosUser.delete(`products/${id}`);
-		dispatch(deleteProductSuccess(data));
+		await axiosUser.delete(`products/${id}`, {
+			headers: {token: `Bearer ` + JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken}
+		});
+		dispatch(deleteProductSuccess(id));
+		// dispatch(deleteProductSuccess(id));
 	} catch (error) {
 		dispatch(deleteProductFailure());
 	}
